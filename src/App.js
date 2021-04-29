@@ -8,7 +8,7 @@ const App  = () =>{
     <>
       <Route path='/chat' render={()=> <Messenger />}/>
       <Route path='/registration' render={()=><RegistrationContainer />}/>
-      <ModalContainer />
+        {/*<ModalContainer /> */}
 
     </>
   )

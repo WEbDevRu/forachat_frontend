@@ -3,11 +3,7 @@ import InputPanel from "./inputpanel";
 
 const InputPanelContainer = (props) =>{
     return (
-
-        <div>
             <InputPanel />
-        </div>
-
     )
 }
 

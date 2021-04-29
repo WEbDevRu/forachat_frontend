@@ -3,11 +3,7 @@ import Messages from "./messages";
 
 const MessagesContainer = (props) =>{
     return (
-
-        <div>
             <Messages />
-        </div>
-
     )
 }
 
