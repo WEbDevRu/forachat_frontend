@@ -2,6 +2,8 @@ import React from "react";
 import MessagesContainer from "./messages/messagesContainer";
 import InputPanelContainer from "./inputpanel/inputPanelContainer";
 import styled from "styled-components";
+import ModalContainer from "../../modal/modalContainer";
+import ChatInfoContainer from "./chatinfo/chatInfoContainer";
 
 const ChatBlock = styled.div`
 width: 69%;
@@ -13,6 +15,9 @@ const Chat = (props) =>{
         <ChatBlock>
             <MessagesContainer />
             <InputPanelContainer />
+            <ModalContainer>
+                <ChatInfoContainer />
+            </ModalContainer>
         </ChatBlock>
 
     )

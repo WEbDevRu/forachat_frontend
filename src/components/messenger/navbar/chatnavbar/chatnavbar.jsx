@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components"
+import {toggleModalState} from "../../../../redux/app-reducer";
 
 const ChatInfoBlock = styled.div`
   width: 69%;
@@ -33,9 +34,10 @@ font-size: 13px;
   line-height: 100%;
 `
 const ChatNavbar = (props) =>{
+
     return (
 
-    <ChatInfoBlock>
+    <ChatInfoBlock onClick={()=>{props.toggleModalState(true)}}>
         <ChatInfo>
             <ChatName>Chat Name</ChatName>
             <ChatMembersCount>23 members</ChatMembersCount>

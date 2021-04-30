@@ -35,6 +35,7 @@ const Messenger = (props) =>{
             <SideBar />
             <Chat />
         </MessengerBody>
+
     </MessengerContainer>
 
     )
