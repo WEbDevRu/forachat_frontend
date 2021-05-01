@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Avatar} from "../../../common/commonUI";
 const InputPanelBlock = styled.div`
   width: 100%;
   height: 128px;
@@ -27,21 +28,6 @@ const ChatForm = styled.div`
 width: calc(100% - 134px);
 `
 
-const ProfileImg = styled.div`
-  display: block;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #1e98ca;
-  margin: auto;
-  span{
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    display: block;
-    line-height: 52px;
-  }
-`
 
 const MessageTextarea = styled.textarea`
   font-family: inherit;
@@ -97,14 +83,14 @@ const InputPanel = (props) =>{
         <InputPanelBlock>
             <InputPanelLine>
                 <YourProfileImageWr>
-                    <ProfileImg><span>НК</span></ProfileImg>
+                    <Avatar name="НК" width="52px"/>
                 </YourProfileImageWr>
                 <ChatForm>
                     <MessageTextarea type="text" placeholder="Write a message..."/>
                     <SendButton><span>Send</span></SendButton>
                 </ChatForm>
                 <ChatProfileImageWr>
-                    <ProfileImg><span>НК</span></ProfileImg>
+                    <Avatar name="НК" width="52px"/>
                 </ChatProfileImageWr>
 
             </InputPanelLine>

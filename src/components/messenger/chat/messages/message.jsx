@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Avatar} from "../../../common/commonUI";
 
 const MessageBlock = styled.div`
   display: flex;
@@ -12,25 +13,6 @@ const ProfileImgWr = styled.div`
 width: 57px;
 `
 
-const ProfileImg = styled.div`
-  display: block;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #1e98ca;
-  margin: auto;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  span{
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    display: block;
-    line-height: 42px;
-  }
-`
 const MessageBody = styled.div`
   width: calc(100% - 124px);
   box-sizing: border-box;
@@ -62,9 +44,7 @@ const Message = (props) =>{
 
         <MessageBlock>
             <ProfileImgWr>
-                <ProfileImg>
-                    <span>НК</span>
-                </ProfileImg>
+                <Avatar name="НК" width="42px"/>
 
             </ProfileImgWr>
             <MessageBody>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled  from "styled-components"
+import {Avatar} from "../../../common/commonUI";
 
 const ChatBlock = styled.div`
   width: 100%;
@@ -25,21 +26,7 @@ const ProfileImageWr = styled.div`
     height: 100%;
 `
 
-const ProfileImage = styled.div`
-display: block;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #1e98ca;
-  margin: auto;
-  span{
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    display: block;
-    line-height: 48px;
-  }
-`
+
 
 const TextWr = styled.div`
   width: calc(100% - 144px);
@@ -101,9 +88,8 @@ const ShortChat = (props) =>{
 
         <ChatBlock active={props.active}>
             <ProfileImageWr>
-                <ProfileImage>
-                    <span>НК</span>
-                </ProfileImage>
+
+                <Avatar name="НК" width="48px"/>
             </ProfileImageWr>
             <TextWr>
                 <ChatName active={props.active}>User 1</ChatName>

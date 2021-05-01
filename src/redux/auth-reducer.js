@@ -1,5 +1,8 @@
 let initialState = {
-    isAuth: false
+    isAuth: false,
+    name: '',
+    avatarColor: '',
+    chatsList: []
 }
 
 
@@ -9,6 +12,13 @@ const authReducer =(state =initialState, action) =>{
             return{
                 ...state,
                isAuth: action.isAuth
+            }
+        case "auth/SET_AUTH_INFO":
+            return {
+                ...state,
+                name: action.name,
+                avatarColor: action.avatarColor,
+                chatsList: action.chats
             }
         default:
             return state
@@ -21,9 +31,13 @@ export const toggleIsAuth = (isAuth) => ({
     isAuth: isAuth
 })
 
-export const Auth = () => (dispatch) =>{
+export const setAuthInfo = (data) =>({
+    type: "auth/SET_AUTH_INFO",
+    name: data.name,
+    avatarColor: data.avatarColor,
+    chatsList: data.chats
+})
 
-    dispatch(toggleIsAuth(true))
-}
+
 
 export  default authReducer

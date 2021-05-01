@@ -7,7 +7,7 @@ import Loading from "./components/common/loading";
 import {useEffect, useRef} from "react";
 import socketIOClient from "socket.io-client";
 import {toggleIsInitialized} from "./redux/app-reducer";
-import {toggleIsAuth} from "./redux/auth-reducer";
+import {toggleIsAuth, setAuthInfo} from "./redux/auth-reducer";
 const SOCKET_SERVER_URL = "http://localhost:8081";
 
 
@@ -34,7 +34,9 @@ const App  = (props) =>{
                 token: getCookie('token')
             })
             socketRef.current.on('auth/AUTH_INFO', (data)=>{
-                console.log(data)
+                props.setAuthInfo(data)
+                props.toggleIsAuth(true)
+                props.toggleIsInitialized()
 
             })
 
@@ -44,21 +46,10 @@ const App  = (props) =>{
             props.toggleIsInitialized()
         }
 
-
-
-
-        // Destroys the socket reference
-        // when the connection is closed
         return () => {
             socketRef.current.disconnect();
         };
     }, []);
-
-
-
-    if(getCookie("token")){
-
-  }
 
 
   return (
@@ -84,5 +75,5 @@ let mapStateToProps = (state) =>{
 
 
 
-export default connect(mapStateToProps, {toggleIsInitialized, toggleIsAuth})(App)
+export default connect(mapStateToProps, {toggleIsInitialized, toggleIsAuth, setAuthInfo})(App)
 
