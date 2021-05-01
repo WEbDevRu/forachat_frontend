@@ -122,7 +122,7 @@ const ChatInfo = (props) =>{
             <Header>
                 <ChatMainInfo>
                     <ProfileImageWr>
-                        <Avatar name="НК" width="72px"/>
+                        <Avatar name="НК" width="72px" color="#1e98ca"/>
                     </ProfileImageWr>
                     <MainInfoWr>
                         <ChatName>Chat</ChatName>

@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./navbar/navbar";
 import Chat from "./chat/chat";
-import SideBar from "./sidebar/sideBar";
+import SideBarContainer from "./sidebar/sideBarContainer";
 import styled from "styled-components"
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
@@ -35,7 +35,7 @@ const Messenger = (props) =>{
             props.isAuth ? <MessengerContainer>
                 <Navbar />
                 <MessengerBody>
-                    <SideBar />
+                    <SideBarContainer />
                     <Chat />
                 </MessengerBody>
 

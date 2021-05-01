@@ -98,7 +98,8 @@ const Registration = (props) =>{
 
         props.socketRef.on("auth/REGISTRATION_SUCCESS", (data)=>{
             document.cookie = 'token='+data.token+'; max-age=360000; secure; path=/'
-
+            props.toggleIsAuth(true)
+            props.setAuthInfo(data)
         })
     }
 

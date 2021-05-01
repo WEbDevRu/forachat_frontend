@@ -18,7 +18,7 @@ const authReducer =(state =initialState, action) =>{
                 ...state,
                 name: action.name,
                 avatarColor: action.avatarColor,
-                chatsList: action.chats
+                chatsList: action.chatsList
             }
         default:
             return state

@@ -36,7 +36,7 @@ const ShortUser = () =>{
     return(
         <ShortUserBlock>
             <UserAvatarWr>
-                <Avatar name="НК" width="42px" />
+                <Avatar name="НК" width="42px" color="#1e98ca"/>
             </UserAvatarWr>
 
             <UserInfoWr>

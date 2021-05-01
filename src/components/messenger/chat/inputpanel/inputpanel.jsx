@@ -83,14 +83,14 @@ const InputPanel = (props) =>{
         <InputPanelBlock>
             <InputPanelLine>
                 <YourProfileImageWr>
-                    <Avatar name="НК" width="52px"/>
+                    <Avatar name="НК" width="52px" color="#1e98ca"/>
                 </YourProfileImageWr>
                 <ChatForm>
                     <MessageTextarea type="text" placeholder="Write a message..."/>
                     <SendButton><span>Send</span></SendButton>
                 </ChatForm>
                 <ChatProfileImageWr>
-                    <Avatar name="НК" width="52px"/>
+                    <Avatar name="НК" width="52px" color="#1e98ca"/>
                 </ChatProfileImageWr>
 
             </InputPanelLine>

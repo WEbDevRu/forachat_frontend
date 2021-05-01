@@ -6,7 +6,7 @@ const ProfileImg = styled.div`
   width: ${(props) => props.width};
   height:  ${(props) => props.width};
   border-radius: 50%;
-  background: #1e98ca;
+  background: ${(props)=> props.color};
   margin: auto;
   -ms-user-select: none;
   -moz-user-select: none;
@@ -17,6 +17,7 @@ const ProfileImg = styled.div`
     font-size: ${(props) => parseInt(props.width)*0.42+"px"};
     text-align: center;
     display: block;
+    text-transform: uppercase;
     line-height: ${(props) => props.width};
   }
 `
@@ -25,7 +26,7 @@ const ProfileImg = styled.div`
 export const Avatar = (props) =>{
     return(
             <ProfileImg {...props}>
-                <span>{props.name}</span>
+                <span>{props.name[0]+props.name[1]}</span>
             </ProfileImg>
         )
 

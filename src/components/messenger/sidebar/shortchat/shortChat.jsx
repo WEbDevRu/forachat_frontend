@@ -1,12 +1,14 @@
 import React from "react";
 import styled  from "styled-components"
 import {Avatar} from "../../../common/commonUI";
+import {NavLink} from "react-router-dom";
+const activeClassName = 'nav-item-active'
 
 const ChatBlock = styled.div`
   width: 100%;
   height: 62px;
   cursor: pointer;
-  background: ${props=> props.active ? '#6490b1' : 'white'};
+  background: white;
   display: flex;
   justify-content: flex-start;
   -ms-user-select: none;
@@ -16,9 +18,7 @@ const ChatBlock = styled.div`
   box-sizing: border-box;
   padding-top: 7px;
   padding-bottom: 7px;
-  &:hover{
-    background: ${props=> props.active ? '#6490b1' : '#f2f6fa'};
-  }
+  
 `
 
 const ProfileImageWr = styled.div`
@@ -41,7 +41,7 @@ const ChatName = styled.p`
   overflow: hidden;
   white-space: nowrap;
   margin-bottom: 7px;
-  color: ${props=> props.active ? 'white' : 'black'}
+  color: black;
 `
 
 const TimeWr = styled.div`
@@ -52,8 +52,7 @@ const TimeWr = styled.div`
     font-size: 11px;
     line-height: 18px;
     text-align: right;
-    color: ${props=> props.active ? 'white' : '#b3b3b3'};
-   
+    color: #b3b3b3;
   }
 `
 
@@ -66,15 +65,14 @@ justify-content: flex-start;
 
 const MessageAuthor = styled.p`
   margin-right: 4px;
-  color: ${props=> props.active ? 'white' : '#517ea5'};
+  color: #517ea5;
   &:after{
     content: ':'
   }
 `
 
 const Message = styled.p`
-  
-  color: ${props=> props.active ? 'white' : '#808080'};
+  color: #808080;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -82,27 +80,55 @@ const Message = styled.p`
 `
 
 
+const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
+  text-decoration: none;
+  &.${activeClassName} {
+    color: red !important;
+    .chatBlock{
+      background: #6490b1;
+    }
+    .chatName{
+      color: white;
+    }
+    .chatAuthor{
+      color: white;
+    }
+    .chatMessage{
+      color: white;
+    }
+    .chatTime{
+      color: white;
+    }
+  }
+ 
+`;
 
-const ShortChat = (props) =>{
+
+
+
+
+const ShortChat = (props) => {
     return (
 
-        <ChatBlock active={props.active}>
-            <ProfileImageWr>
+        <StyledNavLink to={'/chat/'+props._id}>
+            <ChatBlock className="chatBlock" >
+                <ProfileImageWr>
+                    <Avatar name={props.name} width="48px" color={props.avatarColor}/>
+                </ProfileImageWr>
+                <TextWr>
+                    <ChatName className="chatName">{props.name}</ChatName>
+                    <LastMessage>
+                        <MessageAuthor className="chatAuthor">{props.author}</MessageAuthor>
+                        <Message className="chatMessage" ariaCurrent={props["aria-current"]}>{props.text}</Message>
+                    </LastMessage>
+                </TextWr>
 
-                <Avatar name="НК" width="48px"/>
-            </ProfileImageWr>
-            <TextWr>
-                <ChatName active={props.active}>User 1</ChatName>
-                <LastMessage>
-                    <MessageAuthor active={props.active}>designer</MessageAuthor>
-                    <Message active={props.active}>Lorem ipsum dorem</Message>
-                </LastMessage>
-            </TextWr>
+                <TimeWr active={props.active}>
+                    <p className="chatTime">4:36 PM</p>
+                </TimeWr>
+            </ChatBlock>
+        </StyledNavLink>
 
-            <TimeWr active={props.active}>
-                <p>4:36 PM</p>
-            </TimeWr>
-        </ChatBlock>
 
     )
 }

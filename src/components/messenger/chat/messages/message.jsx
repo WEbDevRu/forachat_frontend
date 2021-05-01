@@ -44,7 +44,7 @@ const Message = (props) =>{
 
         <MessageBlock>
             <ProfileImgWr>
-                <Avatar name="НК" width="42px"/>
+                <Avatar name="НК" width="42px" color="#1e98ca"/>
 
             </ProfileImgWr>
             <MessageBody>

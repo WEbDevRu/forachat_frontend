@@ -34,9 +34,11 @@ const App  = (props) =>{
                 token: getCookie('token')
             })
             socketRef.current.on('auth/AUTH_INFO', (data)=>{
+                console.log(data)
                 props.setAuthInfo(data)
                 props.toggleIsAuth(true)
                 props.toggleIsInitialized()
+
 
             })
 
@@ -56,7 +58,7 @@ const App  = (props) =>{
 
       <>
           {props.isInitialized ? <>
-              <Route path='/chat' render={()=> <Messenger />}/>
+              <Route path='/chat:chatId?'  render={()=> <Messenger />}/>
               <Route path='/registration' render={()=><RegistrationContainer socketRef={socketRef.current}/>}/>
           </> : <Loading />
           }
