@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect, useState, useRef} from "react";
 import styled from "styled-components"
+import socketIOClient from "socket.io-client";
 
 const RegistrationWr = styled.div`
 width: 100%;
@@ -87,6 +88,20 @@ const SendButton = styled.button`
 
 
 const Registration = (props) =>{
+    const [inputValue, setInputValue] = useState('')
+    const InputRef = useRef(null)
+
+
+
+    let sendName = (inputValue) =>{
+        props.socketRef.emit("auth/REGISTRATION",{name: inputValue})
+
+        props.socketRef.on("auth/REGISTRATION_SUCCESS", (data)=>{
+            document.cookie = 'token='+data.token+'; max-age=360000; secure; path=/'
+
+        })
+    }
+
     return (
 
         <RegistrationWr>
@@ -96,8 +111,8 @@ const Registration = (props) =>{
                     <h1>Registration</h1>
                 </Header>
                 <Form>
-                    <Input placeholder="Enter your name" />
-                    <SendButton>Submit</SendButton>
+                    <Input ref={InputRef} onChange={()=>{setInputValue(InputRef.current.value)}} value={inputValue} placeholder="Enter your name" />
+                    <SendButton onClick={()=>{sendName(inputValue)}}>Submit</SendButton>
                 </Form>
 
             </RegistrationBlock>

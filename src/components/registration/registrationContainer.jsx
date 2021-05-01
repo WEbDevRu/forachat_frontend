@@ -1,13 +1,31 @@
-import React from "react";
 import Registration from "./registration";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
+
+
 const RegistrationContainer = (props) =>{
+
+
+
+
+
     return (
-            <Registration />
+        <>
+            {props.isAuth ? <Redirect to='/chat' /> : <Registration socketRef={props.socketRef}/>}
+        </>
+
+
 
     )
 }
 
 
+let mapStateToProps = (state) =>{
+    return{
+            isAuth: state.auth.isAuth
+    }
+}
 
 
-export default RegistrationContainer
+
+export default connect(mapStateToProps, {})(RegistrationContainer)

@@ -3,6 +3,8 @@ import Navbar from "./navbar/navbar";
 import Chat from "./chat/chat";
 import SideBar from "./sidebar/sideBar";
 import styled from "styled-components"
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 const MessengerContainer = styled.div`
 background: #fff;
@@ -28,20 +30,34 @@ const MessengerBody = styled.div`
 
 const Messenger = (props) =>{
     return (
+    <>
+        {
+            props.isAuth ? <MessengerContainer>
+                <Navbar />
+                <MessengerBody>
+                    <SideBar />
+                    <Chat />
+                </MessengerBody>
 
-    <MessengerContainer>
-        <Navbar />
-        <MessengerBody>
-            <SideBar />
-            <Chat />
-        </MessengerBody>
+            </MessengerContainer>
+                :
+                <Redirect to='/registration'/>
 
-    </MessengerContainer>
+        }
+
+    </>
+
 
     )
 }
 
 
+let mapStateToProps = (state) =>{
+    return{
+        isAuth: state.auth.isAuth
+    }
+}
 
 
-export default Messenger
+
+export default connect(mapStateToProps, {})(Messenger)
