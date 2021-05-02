@@ -112,8 +112,12 @@ display: block;
   width: calc(100% - 120px);
 `
 const ChatInfo = (props) =>{
+    console.log(props.onlineUsers)
 
-
+    let onlineUsers = []
+    if(props.onlineUsers){
+        onlineUsers = props.onlineUsers.map((item)=> <ShortUser key={item.userId} name={item.name} avatarColor={item.avatarColor}/>)
+    }
 
     return (
 
@@ -146,9 +150,7 @@ const ChatInfo = (props) =>{
                     <i />
                 </UsersIcon>
                 <UsersList>
-                    <ShortUser />
-                    <ShortUser />
-                    <ShortUser />
+                    {onlineUsers}
                 </UsersList>
             </UsersBlock>
 

@@ -8,17 +8,13 @@ import {useEffect, useRef} from "react";
 import socketIOClient from "socket.io-client";
 import {toggleIsInitialized} from "./redux/app-reducer";
 import {toggleIsAuth, setAuthInfo} from "./redux/auth-reducer";
+import {getCookie} from "./components/common/utils";
 const SOCKET_SERVER_URL = "http://localhost:8081";
 
 
 
 const App  = (props) =>{
-    let getCookie = (name) =>{
-        let matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
+
 
     const socketRef = useRef();
 
@@ -58,7 +54,7 @@ const App  = (props) =>{
 
       <>
           {props.isInitialized ? <>
-              <Route path='/chat:chatId?'  render={()=> <Messenger />}/>
+              <Route path='/chat/:chatId?'  render={()=> <Messenger socketRef={socketRef.current}/>}/>
               <Route path='/registration' render={()=><RegistrationContainer socketRef={socketRef.current}/>}/>
           </> : <Loading />
           }

@@ -4,7 +4,8 @@ import Chat from "./chat/chat";
 import SideBarContainer from "./sidebar/sideBarContainer";
 import styled from "styled-components"
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
+
 
 const MessengerContainer = styled.div`
 background: #fff;
@@ -29,6 +30,10 @@ const MessengerBody = styled.div`
 `
 
 const Messenger = (props) =>{
+    let {chatId} = useParams()
+
+
+
     return (
     <>
         {
@@ -36,7 +41,7 @@ const Messenger = (props) =>{
                 <Navbar />
                 <MessengerBody>
                     <SideBarContainer />
-                    <Chat />
+                    <Chat chatId={chatId} socketRef={props.socketRef}/>
                 </MessengerBody>
 
             </MessengerContainer>

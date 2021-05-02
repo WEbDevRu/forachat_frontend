@@ -2,7 +2,7 @@ let initialState = {
     isAuth: false,
     name: '',
     avatarColor: '',
-    chatsList: []
+    chatsList: [],
 }
 
 

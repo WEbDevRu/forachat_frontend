@@ -32,15 +32,15 @@ const UserStatus= styled.p`
   line-height: 100%;
 `
 
-const ShortUser = () =>{
+const ShortUser = (props) =>{
     return(
         <ShortUserBlock>
             <UserAvatarWr>
-                <Avatar name="НК" width="42px" color="#1e98ca"/>
+                <Avatar name={props.name} width="42px" color={props.avatarColor}/>
             </UserAvatarWr>
 
             <UserInfoWr>
-                <UserName>Nikita Krainev</UserName>
+                <UserName>{props.name}</UserName>
                 <UserStatus>online</UserStatus>
             </UserInfoWr>
         </ShortUserBlock>

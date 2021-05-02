@@ -1,4 +1,4 @@
-export     let  formatToAMPM = (dateString)  =>{
+export  const formatToAMPM = (dateString)  =>{
     let date = new Date(dateString)
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -15,6 +15,11 @@ export     let  formatToAMPM = (dateString)  =>{
 
     }
 
+}
 
-
+export  const getCookie = (name) =>{
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
