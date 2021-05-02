@@ -1,10 +1,12 @@
 import React from "react";
 import Message from "./message";
 import styled from "styled-components";
-
+import { Scrollbars } from 'react-custom-scrollbars';
 const MessagesBlock = styled.div`
   width: 100%;
   height: calc(100% - 128px);
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
 const MessagesWr = styled.div`
@@ -16,16 +18,24 @@ const MessagesWr = styled.div`
 `
 
 const Messages = (props) =>{
+
+
+
+    console.log(props.messages)
+        let messagesList = props.messages.map((item)=> <Message name={item.message.creatorName}
+                                                                time={item.message.date}
+                                                                text={item.message.text}
+                                                                creatorColor={item.message.creatorColor}/>)
+
+
+
+
     return (
+
 
         <MessagesBlock>
            <MessagesWr>
-               <Message />
-               <Message />
-               <Message />
-               <Message />
-               <Message />
-               <Message />
+                   {messagesList}
            </MessagesWr>
         </MessagesBlock>
 

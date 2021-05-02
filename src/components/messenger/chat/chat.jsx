@@ -21,6 +21,7 @@ const Chat = (props) =>{
         props.socketRef.on('chat/ONLINE_USERS',(data)=>{
             props.setOnlineUsers(data)
         })
+
     },[])
 
     useEffect(()=>{
@@ -32,8 +33,8 @@ const Chat = (props) =>{
     return (
 
         <ChatBlock>
-            <MessagesContainer />
-            <InputPanelContainer />
+            <MessagesContainer socketRef={props.socketRef}/>
+            <InputPanelContainer socketRef={props.socketRef}/>
             <ModalContainer>
                 <ChatInfoContainer socketRef={props.socketRef}/>
             </ModalContainer>

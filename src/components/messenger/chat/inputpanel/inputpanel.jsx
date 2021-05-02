@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import styled from "styled-components";
 import {Avatar} from "../../../common/commonUI";
+import {getCookie} from "../../../common/utils";
 const InputPanelBlock = styled.div`
   width: 100%;
   height: 128px;
@@ -12,6 +13,7 @@ const InputPanelLine = styled.div`
   justify-content: space-between;
   margin: auto;
   max-width: 524px;
+  padding-top: 20px;
 `
 
 const YourProfileImageWr = styled.div`
@@ -78,6 +80,17 @@ const SendButton = styled.button`
 `
 
 const InputPanel = (props) =>{
+    const [inputValue, setInputValue] = useState('')
+    const InputRef = useRef(null)
+    const sendMessage = () =>{
+        if(inputValue.length > 0){
+            props.socketRef.emit('chat/NEW_MESSAGE', {token: getCookie('token'), chatId: props.chatId, text: inputValue})
+        }
+        setInputValue('')
+
+    }
+
+
 
 
 
@@ -89,8 +102,8 @@ const InputPanel = (props) =>{
                     <Avatar name={props.name} width="52px" color={props.avatarColor}/>
                 </YourProfileImageWr>
                 <ChatForm>
-                    <MessageTextarea type="text" placeholder="Write a message..."/>
-                    <SendButton><span>Send</span></SendButton>
+                    <MessageTextarea ref={InputRef} onChange={()=>{setInputValue(InputRef.current.value)}} value={inputValue} type="text" placeholder="Write a message..."/>
+                    <SendButton onClick={()=>{sendMessage()}}><span>Send</span></SendButton>
                 </ChatForm>
                 <ChatProfileImageWr>
                     <Avatar name={props.chatName} width="52px" color={props.chatColor}/>

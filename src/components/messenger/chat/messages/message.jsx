@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Avatar} from "../../../common/commonUI";
+import {formatToAMPM} from "../../../common/utils"
 
 const MessageBlock = styled.div`
   display: flex;
@@ -42,17 +43,19 @@ const MessageText = styled.p`
 const Message = (props) =>{
     return (
 
+
+
         <MessageBlock>
             <ProfileImgWr>
-                <Avatar name="НК" width="42px" color="#1e98ca"/>
+                <Avatar name="НК" width="42px" color={props.creatorColor}/>
 
             </ProfileImgWr>
             <MessageBody>
-                <MessageAuthor>Alexey</MessageAuthor>
-                <MessageText>Lorem ipsum dorem</MessageText>
+                <MessageAuthor>{props.name}</MessageAuthor>
+                <MessageText>{props.text}</MessageText>
             </MessageBody>
             <MessageTime>
-                <span>2:53:05 PM</span>
+                <span>{formatToAMPM(props.time).seconds}</span>
             </MessageTime>
         </MessageBlock>
 

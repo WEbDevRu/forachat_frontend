@@ -1,5 +1,5 @@
 import './App.css';
-import  {Route, Switch} from "react-router-dom";
+import {Route, Switch, useParams} from "react-router-dom";
 import Messenger from "./components/messenger/messenger";
 import RegistrationContainer from "./components/registration/registrationContainer";
 import {connect} from "react-redux";
@@ -9,6 +9,7 @@ import socketIOClient from "socket.io-client";
 import {toggleIsInitialized} from "./redux/app-reducer";
 import {toggleIsAuth, setAuthInfo} from "./redux/auth-reducer";
 import {getCookie} from "./components/common/utils";
+import {setCurrentChatInfo} from "./redux/chat-reducer"
 import Join from "./components/join/join";
 const SOCKET_SERVER_URL = "http://localhost:8081";
 
@@ -17,10 +18,12 @@ const SOCKET_SERVER_URL = "http://localhost:8081";
 const App  = (props) => {
 
 
+    let {chatId} = useParams()
     const socketRef = useRef();
 
 
     useEffect(() => {
+
 
         // Creates a WebSocket connection
         socketRef.current = socketIOClient(SOCKET_SERVER_URL);
@@ -31,8 +34,8 @@ const App  = (props) => {
                 token: getCookie('token')
             })
             socketRef.current.on('auth/AUTH_INFO', (data) => {
-
                 props.setAuthInfo(data)
+                props.setCurrentChatInfo(data.chats[0])
                 props.toggleIsAuth(true)
                 props.toggleIsInitialized()
 
@@ -67,11 +70,11 @@ const App  = (props) => {
 let mapStateToProps = (state) =>{
     return{
         isInitialized: state.app.isInitialized,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
     }
 }
 
 
 
-export default connect(mapStateToProps, {toggleIsInitialized, toggleIsAuth, setAuthInfo})(App)
+export default connect(mapStateToProps, {toggleIsInitialized, toggleIsAuth, setAuthInfo, setCurrentChatInfo})(App)
 

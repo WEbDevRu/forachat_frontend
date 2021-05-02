@@ -11,7 +11,7 @@ export  const formatToAMPM = (dateString)  =>{
     seconds = seconds < 10 ? '0'+seconds: seconds
     return {
         hours: hours + ':' + minutes + ' ' + ampm,
-        seconds: hours + ':' + minutes + ' ' + seconds + ' ' + ampm,
+        seconds: hours + ':' + minutes + ':' + seconds + ' ' + ampm,
 
     }
 

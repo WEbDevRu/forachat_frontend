@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "./navbar/navbar";
 import Chat from "./chat/chat";
 import SideBarContainer from "./sidebar/sideBarContainer";
@@ -29,28 +29,29 @@ const MessengerBody = styled.div`
   align-items: flex-start;
 `
 
-const Messenger = (props) =>{
+const Messenger = (props) => {
+    let [redirect, setRedirect] = useState(false)
     let {chatId} = useParams()
 
 
-
     return (
-    <>
-        {
-            props.isAuth ? <MessengerContainer>
-                <Navbar />
-                <MessengerBody>
-                    <SideBarContainer />
-                    <Chat chatId={chatId} socketRef={props.socketRef}/>
-                </MessengerBody>
+        <>
 
-            </MessengerContainer>
-                :
-                <Redirect to='/registration'/>
+            {
+                props.isAuth ? <MessengerContainer>
+                        <Navbar/>
+                        <MessengerBody>
+                            <SideBarContainer/>
+                            <Chat chatId={chatId} socketRef={props.socketRef}/>
+                        </MessengerBody>
 
-        }
+                    </MessengerContainer>
+                    :
+                    <Redirect to='/registration'/>
 
-    </>
+            }
+
+        </>
 
 
     )
@@ -59,7 +60,8 @@ const Messenger = (props) =>{
 
 let mapStateToProps = (state) =>{
     return{
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        chats: state.auth.chatsList
     }
 }
 

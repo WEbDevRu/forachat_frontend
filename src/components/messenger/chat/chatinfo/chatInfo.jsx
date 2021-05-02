@@ -140,7 +140,7 @@ const ChatInfo = (props) =>{
                 </InviteIcon>
                 <InviteText>
                     <InviteP>Invite link</InviteP>
-                    <ClickToCopy value={"https://trackyour.site/join/"+props.chatId}/>
+                    <ClickToCopy value={"http://localhost:3000/join/"+props.chatId}/>
                 </InviteText>
 
             </InviteBlock>

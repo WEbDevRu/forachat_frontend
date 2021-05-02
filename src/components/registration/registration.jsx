@@ -86,21 +86,36 @@ const SendButton = styled.button`
   }
 `
 
+const InputAlert = styled.p`
+  display: block;
+  height: 20px;
+  color: red;
+  
+`
+
 
 const Registration = (props) =>{
     const [inputValue, setInputValue] = useState('')
+    const [inputAlert, setInputAlert] = useState('')
     const InputRef = useRef(null)
 
 
 
     let sendName = (inputValue) =>{
-        props.socketRef.emit("auth/REGISTRATION",{name: inputValue})
+        if(inputValue.length > 1){
+            props.socketRef.emit("auth/REGISTRATION",{name: inputValue})
 
-        props.socketRef.on("auth/REGISTRATION_SUCCESS", (data)=>{
-            document.cookie = 'token='+data.token+'; max-age=360000; secure; path=/'
-            props.toggleIsAuth(true)
-            props.setAuthInfo(data)
-        })
+            props.socketRef.on("auth/REGISTRATION_SUCCESS", (data)=>{
+                document.cookie = 'token='+data.token+'; max-age=360000; secure; path=/'
+                props.toggleIsAuth(true)
+                props.setAuthInfo(data)
+            })
+        }
+        else{
+            setInputAlert('Name is required')
+        }
+
+
     }
 
     return (
@@ -112,7 +127,8 @@ const Registration = (props) =>{
                     <h1>Registration</h1>
                 </Header>
                 <Form>
-                    <Input ref={InputRef} onChange={()=>{setInputValue(InputRef.current.value)}} value={inputValue} placeholder="Enter your name" />
+                    <InputAlert>{inputAlert}</InputAlert>
+                    <Input ref={InputRef} onChange={()=>{setInputValue(InputRef.current.value) ; setInputAlert('')}} value={inputValue} placeholder="Enter your name" />
                     <SendButton onClick={()=>{sendName(inputValue)}}>Submit</SendButton>
                 </Form>
 
