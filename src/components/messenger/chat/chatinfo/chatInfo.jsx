@@ -122,11 +122,11 @@ const ChatInfo = (props) =>{
             <Header>
                 <ChatMainInfo>
                     <ProfileImageWr>
-                        <Avatar name="НК" width="72px" color="#1e98ca"/>
+                        <Avatar name={props.chatName} width="72px" color={props.chatColor}/>
                     </ProfileImageWr>
                     <MainInfoWr>
-                        <ChatName>Chat</ChatName>
-                        <ChatCount>24977 members</ChatCount>
+                        <ChatName>{props.chatName}</ChatName>
+                        <ChatCount>{props.membersCount} {props.membersCount === 1 ? 'member' : 'members'}</ChatCount>
                     </MainInfoWr>
                 </ChatMainInfo>
             </Header>
@@ -136,7 +136,7 @@ const ChatInfo = (props) =>{
                 </InviteIcon>
                 <InviteText>
                     <InviteP>Invite link</InviteP>
-                    <ClickToCopy value="https://trackyour.site"/>
+                    <ClickToCopy value={"https://trackyour.site/join/"+props.chatId}/>
                 </InviteText>
 
             </InviteBlock>

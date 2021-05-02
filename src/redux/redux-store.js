@@ -7,8 +7,7 @@ import thunk from 'redux-thunk'
 let reducers = combineReducers({
     auth: authReducer,
     app: appReducer,
-    chat: chatReducer,
-
+    chat: chatReducer
 });
 
 

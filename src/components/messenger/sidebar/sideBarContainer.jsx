@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import SideBar from "./sideBar";
-
+import {setCurrentChatInfo} from "../../../redux/chat-reducer"
 
 const SideBarContainer = (props) =>{
     return (
-        <SideBar chatsList={props.chatsList}/>
+        <SideBar chatsList={props.chatsList} setCurrentChatInfo={props.setCurrentChatInfo}/>
     )
 }
 
@@ -18,4 +18,4 @@ let mapStateToProps = (state) =>{
 
 
 
-export default connect(mapStateToProps, {})(SideBarContainer)
+export default connect(mapStateToProps, {setCurrentChatInfo})(SideBarContainer)

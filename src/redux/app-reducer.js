@@ -32,4 +32,4 @@ export const toggleIsInitialized = () =>({
 })
 
 
-export  default appReducer
+export default appReducer

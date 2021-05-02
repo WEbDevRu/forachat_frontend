@@ -39,8 +39,8 @@ const ChatNavbar = (props) =>{
 
     <ChatInfoBlock onClick={()=>{props.toggleModalState(true)}}>
         <ChatInfo>
-            <ChatName>Chat Name</ChatName>
-            <ChatMembersCount>23 members</ChatMembersCount>
+            <ChatName>{props.chatName}</ChatName>
+            <ChatMembersCount>{props.membersCount} {props.membersCount === 1 ? 'member' : 'members'}</ChatMembersCount>
         </ChatInfo>
     </ChatInfoBlock>
 

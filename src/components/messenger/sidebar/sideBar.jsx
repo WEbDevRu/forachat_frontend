@@ -14,7 +14,7 @@ const SideBarBlock = styled.div`
 const SideBar = (props) =>{
     console.log(props)
 
-    let ChatsList = props.chatsList.map((item, index)=> <ShortChat key={item._id}
+    let ChatsList = props.chatsList.map((item, index)=> <ShortChat  key={item._id}
                                                                    _id={item._id}
                                                                    name={item.name}
                                                                    index={index}
@@ -22,6 +22,7 @@ const SideBar = (props) =>{
                                                                    author={item.lastMessage.author}
                                                                    text={item.lastMessage.text}
                                                                    avatarColor={item.avatarColor}
+                                                                   changeCurrentChat={()=>{props.setCurrentChatInfo(item)}}
     />)
 
 

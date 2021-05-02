@@ -78,19 +78,22 @@ const SendButton = styled.button`
 `
 
 const InputPanel = (props) =>{
+
+
+
     return (
 
         <InputPanelBlock>
             <InputPanelLine>
                 <YourProfileImageWr>
-                    <Avatar name="НК" width="52px" color="#1e98ca"/>
+                    <Avatar name={props.name} width="52px" color={props.avatarColor}/>
                 </YourProfileImageWr>
                 <ChatForm>
                     <MessageTextarea type="text" placeholder="Write a message..."/>
                     <SendButton><span>Send</span></SendButton>
                 </ChatForm>
                 <ChatProfileImageWr>
-                    <Avatar name="НК" width="52px" color="#1e98ca"/>
+                    <Avatar name={props.chatName} width="52px" color={props.chatColor}/>
                 </ChatProfileImageWr>
 
             </InputPanelLine>

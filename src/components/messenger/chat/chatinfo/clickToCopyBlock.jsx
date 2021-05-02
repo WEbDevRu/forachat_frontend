@@ -17,6 +17,7 @@ const ClickToCopyInput = styled.input`
   outline: none;
   margin-bottom: 10px;
   margin-top: 10px;
+  width: 340px;
 ;
 `
 const ClickToCopyButton = styled.button`
@@ -59,7 +60,7 @@ export const ClickToCopy = (props) => {
     return(
         <ClickToCopyBlock>
 
-            <ClickToCopyInput onClick={(e)=>{e.target.select()}} ref={textAreaRef} value={props.value} />
+            <ClickToCopyInput readOnly onClick={(e)=>{e.target.select()}} ref={textAreaRef} value={props.value} />
             <ClickToCopyRow>
                 <ClickToCopyButton primary onClick={copyToClipboard}>Click to copy</ClickToCopyButton>
                 {copySuccess === 'copied' ? <CopiedBadge>Copied</CopiedBadge> : ''}

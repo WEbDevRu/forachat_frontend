@@ -2,6 +2,8 @@ import React from "react";
 import styled  from "styled-components"
 import {Avatar} from "../../../common/commonUI";
 import {NavLink} from "react-router-dom";
+import {formatToAMPM} from "../../../common/utils";
+
 const activeClassName = 'nav-item-active'
 
 const ChatBlock = styled.div`
@@ -108,9 +110,12 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
 
 
 const ShortChat = (props) => {
+
+
+
     return (
 
-        <StyledNavLink to={'/chat/'+props._id}>
+        <StyledNavLink to={'/chat/'+props._id} onClick={()=>{props.changeCurrentChat()}}>
             <ChatBlock className="chatBlock" >
                 <ProfileImageWr>
                     <Avatar name={props.name} width="48px" color={props.avatarColor}/>
@@ -124,7 +129,7 @@ const ShortChat = (props) => {
                 </TextWr>
 
                 <TimeWr active={props.active}>
-                    <p className="chatTime">4:36 PM</p>
+                    <p className="chatTime">{formatToAMPM(props.time).hours}</p>
                 </TimeWr>
             </ChatBlock>
         </StyledNavLink>
