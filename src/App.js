@@ -9,11 +9,12 @@ import socketIOClient from "socket.io-client";
 import {toggleIsInitialized} from "./redux/app-reducer";
 import {toggleIsAuth, setAuthInfo} from "./redux/auth-reducer";
 import {getCookie} from "./components/common/utils";
+import Join from "./components/join/join";
 const SOCKET_SERVER_URL = "http://localhost:8081";
 
 
 
-const App  = (props) =>{
+const App  = (props) => {
 
 
     const socketRef = useRef();
@@ -25,12 +26,12 @@ const App  = (props) =>{
         socketRef.current = socketIOClient(SOCKET_SERVER_URL);
 
 
-        if(getCookie('token')){
+        if (getCookie('token')) {
             socketRef.current.emit("auth/AUTH", {
                 token: getCookie('token')
             })
-            socketRef.current.on('auth/AUTH_INFO', (data)=>{
-                console.log(data)
+            socketRef.current.on('auth/AUTH_INFO', (data) => {
+
                 props.setAuthInfo(data)
                 props.toggleIsAuth(true)
                 props.toggleIsInitialized()
@@ -38,8 +39,7 @@ const App  = (props) =>{
 
             })
 
-        }
-        else{
+        } else {
             props.toggleIsAuth(false)
             props.toggleIsInitialized()
         }
@@ -50,20 +50,20 @@ const App  = (props) =>{
     }, []);
 
 
-  return (
+    return (
 
-      <>
-          {props.isInitialized ? <>
-              <Route path='/chat/:chatId?'  render={()=> <Messenger socketRef={socketRef.current}/>}/>
-              <Route path='/registration' render={()=><RegistrationContainer socketRef={socketRef.current}/>}/>
-          </> : <Loading />
-          }
-      </>
+        <>
+            {props.isInitialized ? <>
+                <Route path='/chat/:chatId?' render={() => <Messenger socketRef={socketRef.current}/>}/>
+                <Route path='/registration' render={() => <RegistrationContainer socketRef={socketRef.current}/>}/>
+                <Route path='/join/:chatId?' render={() => <Join socketRef={socketRef.current}/>}/>
+            </> : <Loading/>
+            }
+        </>
 
 
-  )
+    )
 }
-
 let mapStateToProps = (state) =>{
     return{
         isInitialized: state.app.isInitialized,
