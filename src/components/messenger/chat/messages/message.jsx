@@ -15,13 +15,13 @@ width: 57px;
 `
 
 const MessageBody = styled.div`
-  width: calc(100% - 124px);
+  width: calc(100% - 134px);
   box-sizing: border-box;
   padding-left: 9px;
   padding-top: 3px;
 `
 const MessageTime = styled.div`
-width: 67px;
+width: 77px;
   -ms-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;

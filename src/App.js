@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Switch, useParams} from "react-router-dom";
+import {Redirect, Route, Switch, useParams} from "react-router-dom";
 import Messenger from "./components/messenger/messenger";
 import RegistrationContainer from "./components/registration/registrationContainer";
 import {connect} from "react-redux";
@@ -35,7 +35,6 @@ const App  = (props) => {
             })
             socketRef.current.on('auth/AUTH_INFO', (data) => {
                 props.setAuthInfo(data)
-                props.setCurrentChatInfo(data.chats[0])
                 props.toggleIsAuth(true)
                 props.toggleIsInitialized()
 
@@ -57,6 +56,7 @@ const App  = (props) => {
 
         <>
             {props.isInitialized ? <>
+                <Route path='/' render={()=><Redirect to='/chat/' />}/>
                 <Route path='/chat/:chatId?' render={() => <Messenger socketRef={socketRef.current}/>}/>
                 <Route path='/registration' render={() => <RegistrationContainer socketRef={socketRef.current}/>}/>
                 <Route path='/join/:chatId?' render={() => <Join socketRef={socketRef.current}/>}/>

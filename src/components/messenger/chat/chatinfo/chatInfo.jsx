@@ -112,7 +112,6 @@ display: block;
   width: calc(100% - 120px);
 `
 const ChatInfo = (props) =>{
-    console.log(props.onlineUsers)
 
     let onlineUsers = []
     if(props.onlineUsers){
